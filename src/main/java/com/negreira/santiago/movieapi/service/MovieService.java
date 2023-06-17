@@ -16,7 +16,15 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<Movie> listAll() {
+    public List<Movie> getAll() {
         return (List<Movie>) movieRepository.findAll();
+    }
+
+    public Movie getMovieByName(String name) {
+        return movieRepository.findByName(name);
+    }
+
+    public Movie save(Movie movie) {
+        return movieRepository.save(movie);
     }
 }
