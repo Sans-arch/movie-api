@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -28,7 +27,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Movie> listMovie(@PathVariable Integer id) {
+    public Movie listMovie(@PathVariable Integer id) {
         return movieService.getMovieById(id);
     }
 
