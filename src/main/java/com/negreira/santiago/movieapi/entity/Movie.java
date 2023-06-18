@@ -2,10 +2,12 @@ package com.negreira.santiago.movieapi.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "movies")
 @Data
+@NoArgsConstructor
 public class Movie {
 
     @Id

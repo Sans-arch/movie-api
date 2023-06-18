@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -26,9 +27,21 @@ public class MovieController {
         return movieService.getMovieByName(name);
     }
 
+    @GetMapping("/{id}")
+    public Optional<Movie> listMovie(@PathVariable Integer id) {
+        return movieService.getMovieById(id);
+    }
+
     @PostMapping
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        Movie createdMovie = movieService.save(movie);
-        return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
+    public ResponseEntity<List<Movie>> createMovies(@RequestBody List<Movie> movies) {
+        List<Movie> createdMovies = movieService.saveAll(movies);
+        return new ResponseEntity<>(createdMovies, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteMovie(@PathVariable Integer id) {
+        movieService.deleteMovie(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
