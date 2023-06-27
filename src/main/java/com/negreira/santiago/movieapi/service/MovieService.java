@@ -9,12 +9,8 @@ import java.util.List;
 
 @Service
 public class MovieService {
-    private final MovieRepository movieRepository;
-
-    @Autowired
-    public MovieService(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
+	@Autowired
+    private MovieRepository movieRepository;
 
     public List<Movie> getAll() {
         return (List<Movie>) movieRepository.findAll();

@@ -3,6 +3,8 @@ package com.negreira.santiago.movieapi.controller;
 import com.negreira.santiago.movieapi.entity.Movie;
 import com.negreira.santiago.movieapi.service.MovieService;
 import lombok.Data;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +15,23 @@ import java.util.List;
 @RequestMapping("/api/movies")
 @Data
 public class MovieController {
-    private final MovieService movieService;
-
-    @GetMapping
-    public ResponseEntity<List<Movie>> listAllMovies() {
-        List<Movie> allMovies = movieService.getAll();
-        return new ResponseEntity<>(allMovies, HttpStatus.OK);
+	
+	@Autowired
+    private MovieService movieService;
+	
+	@PostMapping
+    public List<Movie> createMovies(@RequestBody List<Movie> movies) {
+        List<Movie> createdMovies = movieService.saveAll(movies);
+        return createdMovies;
     }
 
+    @GetMapping
+    public List<Movie> listAllMovies() {
+        List<Movie> allMovies = movieService.getAll();
+        
+        return allMovies;
+    }
+    
     @GetMapping(params = "name")
     public Movie listMovie(String name) {
         return movieService.getMovieByName(name);
@@ -29,12 +40,6 @@ public class MovieController {
     @GetMapping("/{id}")
     public Movie listMovie(@PathVariable Integer id) {
         return movieService.getMovieById(id);
-    }
-
-    @PostMapping
-    public ResponseEntity<List<Movie>> createMovies(@RequestBody List<Movie> movies) {
-        List<Movie> createdMovies = movieService.saveAll(movies);
-        return new ResponseEntity<>(createdMovies, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

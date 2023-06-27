@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "movies")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@ToString
 public class Movie {
 
     @Id

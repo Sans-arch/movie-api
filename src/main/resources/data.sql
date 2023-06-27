@@ -1,10 +1,4 @@
-CREATE TABLE movies (
-    id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    release_year INTEGER NOT NULL,
-    director VARCHAR(255) NOT NULL,
-    genre VARCHAR(255) NOT NULL
-);
+
 
 INSERT INTO movies (name, release_year, director, genre) VALUES ('The Shawshank Redemption', 1994, 'Frank Darabont', 'Drama');
 INSERT INTO movies (name, release_year, director, genre) VALUES ('The Godfather', 1972, 'Francis Ford Coppola', 'Crime');
