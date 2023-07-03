@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class MovieService {
+	
 	@Autowired
     private MovieRepository movieRepository;
 
@@ -17,7 +18,7 @@ public class MovieService {
     }
 
     public Movie getMovieByName(String name) {
-        return movieRepository.findByName(name);
+        return movieRepository.findByTitle(name);
     }
 
     public Movie save(Movie movie) {

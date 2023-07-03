@@ -20,14 +20,26 @@ public class Movie {
     private Integer id;
 
     @Column
-    private String name;
+    private String title;
+    
+    @Column
+    private String originInfo;
 
     @Column
     private Integer releaseYear;
 
     @Column
-    private String genre;
+    private String genres;
 
     @Column
     private String director;
+    
+    @Column
+    private Double imdbRating;
+    
+    @Column
+    private Double rottenRating;
+    
+    @Column
+    private String posterUrl;
 }
