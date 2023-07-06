@@ -33,6 +33,13 @@ public class MovieController {
         return allMovies;
     }
     
+    @GetMapping("/featured")
+    public List<Movie> listFeatured() {
+    	List<Movie> featuredMovies = movieService.getFeaturedMovies();
+    	
+    	return featuredMovies;
+    }
+    
     @GetMapping(params = "name")
     public Movie listMovie(String name) {
         return movieService.getMovieByName(name);
