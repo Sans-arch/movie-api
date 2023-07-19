@@ -1,12 +1,14 @@
 package com.negreira.santiago.movieapi.service;
 
-import com.negreira.santiago.movieapi.entity.Movie;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledForJreRange;
 import org.junit.jupiter.api.condition.JRE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.negreira.santiago.movieapi.entities.Movie;
+import com.negreira.santiago.movieapi.services.MovieService;
 
 import java.util.ArrayList;
 import java.util.List;

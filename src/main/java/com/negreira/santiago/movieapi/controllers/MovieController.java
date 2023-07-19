@@ -1,7 +1,9 @@
-package com.negreira.santiago.movieapi.controller;
+package com.negreira.santiago.movieapi.controllers;
 
-import com.negreira.santiago.movieapi.entity.Movie;
-import com.negreira.santiago.movieapi.service.MovieService;
+import com.negreira.santiago.movieapi.dtos.MovieDTO;
+import com.negreira.santiago.movieapi.entities.Movie;
+import com.negreira.santiago.movieapi.services.MovieService;
+
 import lombok.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,8 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/movies")
 @Data
+@RequestMapping("/api/movies")
 public class MovieController {
 	
 	@Autowired
@@ -27,33 +29,28 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<Movie> listAllMovies() {
-        List<Movie> allMovies = movieService.getAll();
-        
-        return allMovies;
+    public List<MovieDTO> listAllMovies() {
+        return movieService.getAll();
     }
     
     @GetMapping("/featured")
-    public List<Movie> listFeatured() {
-    	List<Movie> featuredMovies = movieService.getFeaturedMovies();
-    	
-    	return featuredMovies;
+    public List<MovieDTO> listFeatured() {
+    	return movieService.getFeaturedMovies();
     }
     
     @GetMapping(params = "name")
-    public Movie listMovie(String name) {
+    public MovieDTO listMovie(String name) {
         return movieService.getMovieByName(name);
     }
 
     @GetMapping("/{id}")
-    public Movie listMovie(@PathVariable Integer id) {
+    public MovieDTO listMovie(@PathVariable Long id) {
         return movieService.getMovieById(id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteMovie(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
-
         return ResponseEntity.noContent().build();
     }
 }
