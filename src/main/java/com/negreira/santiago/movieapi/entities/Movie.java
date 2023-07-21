@@ -44,6 +44,6 @@ public class Movie {
     @Column
     private Double rottenRating;
     
-    @Column
+    @Column(columnDefinition = "TEXT", length = 1000)
     private String posterUrl;
 }
