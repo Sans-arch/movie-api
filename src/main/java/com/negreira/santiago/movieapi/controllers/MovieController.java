@@ -3,11 +3,7 @@ package com.negreira.santiago.movieapi.controllers;
 import com.negreira.santiago.movieapi.dtos.MovieDTO;
 import com.negreira.santiago.movieapi.entities.Movie;
 import com.negreira.santiago.movieapi.services.MovieService;
-
-import lombok.Data;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +11,6 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@Data
 @RequestMapping("/api/movies")
 public class MovieController {
 	
@@ -23,9 +18,9 @@ public class MovieController {
     private MovieService movieService;
 	
 	@PostMapping
-    public List<Movie> createMovies(@RequestBody List<Movie> movies) {
+    public List<MovieDTO> createMovies(@RequestBody List<Movie> movies) {
         List<Movie> createdMovies = movieService.saveAll(movies);
-        return createdMovies;
+        return createdMovies.stream().map(MovieDTO::new).toList();
     }
 
     @GetMapping

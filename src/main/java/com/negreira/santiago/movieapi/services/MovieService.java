@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,12 +23,12 @@ public class MovieService {
     	List<Movie> moviesFromEntity = (List<Movie>) movieRepository.findAll();
     	
     	return moviesFromEntity.stream()
-    			.map(movie -> new MovieDTO(movie)).toList();
+                .map(MovieDTO::new).toList();
     }
     
     public List<MovieDTO> getFeaturedMovies() {
     	return movieRepository.findFeaturedMovies().stream()
-    			.map(movie -> new MovieDTO(movie)).toList();
+                .map(MovieDTO::new).toList();
     }
 
     public MovieDTO getMovieByName(String name) {
@@ -52,7 +53,7 @@ public class MovieService {
     }
 
     public MovieDTO getMovieById(Long id) {
-    	Movie movie = movieRepository.findById(id).get();
-    	return new MovieDTO(movie);
+        Optional<Movie> movie = movieRepository.findById(id);
+        return movie.isPresent() ? new MovieDTO(movie.get()) : null;
     }
 }
