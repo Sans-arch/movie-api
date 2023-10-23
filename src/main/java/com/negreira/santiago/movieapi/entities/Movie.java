@@ -1,5 +1,6 @@
 package com.negreira.santiago.movieapi.entities;
 
+import com.negreira.santiago.movieapi.dtos.MovieDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,4 +47,16 @@ public class Movie {
     
     @Column(columnDefinition = "TEXT", length = 1000)
     private String posterUrl;
+
+    public Movie(MovieDTO movieDTO) {
+        this.id = movieDTO.getId();
+        this.title = movieDTO.getTitle();
+        this.originInfo = movieDTO.getOriginInfo();
+        this.releaseYear = movieDTO.getReleaseYear();
+        this.genres = movieDTO.getGenres();
+        this.director = movieDTO.getDirector();
+        this.imdbRating = movieDTO.getImdbRating();
+        this.rottenRating = movieDTO.getRottenRating();
+        this.posterUrl = movieDTO.getPosterUrl();
+    }
 }

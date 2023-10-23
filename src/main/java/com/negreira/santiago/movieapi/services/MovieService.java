@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,13 @@ public class MovieService {
     }
     
     public List<MovieDTO> getFeaturedMovies() {
-    	return movieRepository.findFeaturedMovies().stream()
-                .map(MovieDTO::new).toList();
+        List<Movie> movieList = movieRepository.findFeaturedMovies().orElse(Collections.emptyList());
+        return movieList.stream().map(MovieDTO::new).toList();
     }
 
     public MovieDTO getMovieByName(String name) {
-    	Movie movie = movieRepository.findByTitle(name);
-        return new MovieDTO(movie);
+    	Optional<Movie> movie = movieRepository.findByTitle(name);
+        return new MovieDTO(movie.get());
     }
 
     public Movie save(Movie movie) {

@@ -2,9 +2,11 @@ package com.negreira.santiago.movieapi.dtos;
 
 import com.negreira.santiago.movieapi.entities.Movie;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class MovieDTO {
 	private Long id;
     private String title;
